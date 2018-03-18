@@ -2,8 +2,356 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.pa1jeswani.restaurantap.CreateRest">
 
+        <ScrollView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Business Information"
+                android:textSize="15dp"
+                android:id="@+id/ctv1"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_gravity="center_horizontal" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Operations related Information"
+                android:textSize="15dp"
+                android:id="@+id/ctv2"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_gravity="center_horizontal" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Legal and Commercial Information"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:id="@+id/ctv3"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner Email"
+                android:textSize="20dp"
+                android:id="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(This will be your username)"
+                android:textSize="16dp"
+                android:id="@+id/tvOwn" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:hint="Email"
+                android:id="@+id/etOwnEmail" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Password"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvPass1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(This can be used to edit/modify application)"
+                android:textSize="16dp"
+                android:id="@+id/tvPas" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:hint="Create a New Password"
+                android:id="@+id/etPass1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm Password"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvPass2" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:hint="Confirm Password"
+                android:id="@+id/etPass2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant Name"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvRest" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Name as seen by customer)"
+                android:textSize="16dp"
+                android:id="@+id/tvNCust" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Restaurant Name"
+                android:id="@+id/etRestName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registered Name of Business"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvReg" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Legal business / Entity Name)"
+                android:textSize="16dp"
+                android:id="@+id/tvNCust1" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Registered Name of Business"
+                android:id="@+id/etReg" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant/Outlet Address"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvResAddress" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Full address of outlet with Pincode)"
+                android:textSize="16dp"
+                android:id="@+id/tvNCust2" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:hint="Restaurant/Outlet Address"
+                android:ems="10"
+                android:id="@+id/etResAddress" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registered Business Address"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvPostal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Full address of office with Pincode)"
+                android:textSize="16dp"
+                android:id="@+id/tvNCust3" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:ems="10"
+                android:hint="Registered Business Address"
+                android:id="@+id/etPostal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner Name"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvOwner" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Full Name)"
+                android:textSize="16dp"
+                android:id="@+id/tvNCustomer4" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Owner Name"
+                android:id="@+id/etOwnerName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner Contact Number"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvContact" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(We will reach out to this id for further communication)"
+                android:textSize="16dp"
+                android:id="@+id/tvNContact" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/etContact" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="City"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvCity" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="City"
+                android:id="@+id/etCity" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="State"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvState" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="State"
+                android:id="@+id/etState" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvLocation" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Location"
+                android:id="@+id/etLocation" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I have access to a device and internet connection to accept orders "
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvAccept"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rgAccept">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbYes"
+                    android:text="Yes"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbNo"
+                    android:text="No"/>
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Photos"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvPhoto"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Photos should cover Front View , Kitchen and Dining / Packaging)"
+                android:textSize="16dp"
+                android:id="@+id/tvCover" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose File"
+                android:paddingBottom="15dp"
+                android:id="@+id/btnSelPic1" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose File"
+                android:paddingBottom="15dp"
+                android:id="@+id/btnSelPic2" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose File"
+                android:paddingBottom="15dp"
+                android:id="@+id/btnSelPic3" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name of website"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvWeb"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(In case if you have online presence)"
+                android:textSize="16dp"
+                android:id="@+id/tvNOnline" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name of website"
+                android:id="@+id/etWeb" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#8a7cef"
+                android:id="@+id/btnSave"
+                android:text="Save and Continue"
+                android:textColor="#ffffff"
+                />
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

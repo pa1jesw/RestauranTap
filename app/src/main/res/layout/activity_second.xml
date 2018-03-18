@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.pa1jeswani.restaurantap.SecondAct">
+
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:orientation="vertical">
+
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Business Information"
+                android:textSize="15dp"
+                android:id="@+id/ctv1"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_gravity="center_horizontal" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Operations related Information"
+                android:textSize="15dp"
+                android:id="@+id/ctv2"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_gravity="center_horizontal" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Legal and Commercial Information"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:id="@+id/ctv3"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Available cuisines"
+                android:textSize="20dp"
+                android:id="@+id/tvSelect" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(You can choose multiple cuisines)"
+                android:textSize="16dp"
+                android:id="@+id/tvMul" />
+
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="- None Selected -"
+                android:id="@+id/btnSelect"
+                android:padding="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scanned Copy of Menu"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvScanCopy" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Include all pages of the menu - you can attach multiple files)"
+                android:textSize="16dp"
+                android:id="@+id/tvScan" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Picture"
+                android:id="@+id/btnPic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Operating days"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvDays" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Choose multiple or select All)"
+                android:textSize="16dp"
+                android:id="@+id/tvOp" />
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="- None Selected -"
+                android:id="@+id/btnOp"
+                android:padding="5dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Operating Hours-Morning/Afternoon"
+                android:textSize="15dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvHoursMorning" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Time"
+                android:textSize="15dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvStart" />
+
+            <Spinner
+                android:id="@+id/spnFeet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/spnInch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Time"
+                android:textSize="15dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvEnd" />
+
+            <Spinner
+                android:id="@+id/spnFeet1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/spnInch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Operating Hours-Evening/Night"
+                android:textSize="15dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvHoursNight" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Time"
+                android:textSize="15dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvStart1" />
+
+            <Spinner
+                android:id="@+id/spnFeet12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/spnInch12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Time"
+                android:textSize="15dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvEnd12" />
+
+            <Spinner
+                android:id="@+id/spnFeet123"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/spnInch123"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minimum Order Value"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvOrder" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Recommended 0 ; Maximum INR 200)"
+                android:textSize="16dp"
+                android:id="@+id/tvMin" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="Minimum Order Value"
+                android:id="@+id/etOrder" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Distance"
+                android:ems="10"
+                android:paddingTop="15dp"
+                android:id="@+id/tvDist" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="1 KM"
+                android:id="@+id/etDist" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Time"
+                android:textSize="20dp"
+                android:ems="10"
+                android:paddingTop="15dp"
+                android:id="@+id/tvTime" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(In Minutes - this will be shown to customers)"
+                android:textSize="16dp"
+                android:id="@+id/tvDel" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="30 minutes"
+                android:id="@+id/etTime" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name of staff taking Orders"
+                android:ems="10"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvName" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Name of staff taking Orders"
+                android:id="@+id/etStaffName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone number to receive Orders"
+                android:ems="10"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvPhone" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Should be available throughout operational hours)"
+                android:textSize="16dp"
+                android:id="@+id/tvPhoneN" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Owner Contact Number"
+                android:inputType="phone"
+                android:id="@+id/etPhone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email ID to receive Orders"
+                android:ems="10"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvEmail" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email ID to receive Orders"
+                android:inputType="textEmailAddress"
+                android:id="@+id/etEmail" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant Manager Name"
+                android:ems="10"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvManager" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Restaurant Manager Name"
+                android:id="@+id/etManager" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant Manager Phone number"
+                android:ems="10"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvManPhone" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(This will be used for order escalations)"
+                android:textSize="16dp"
+                android:id="@+id/tvOrEsc" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Manager Contact Number"
+                android:inputType="phone"
+                android:id="@+id/etManPhone" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restaurant Manager Email ID"
+                android:ems="10"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:id="@+id/tvEmailManager" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email ID to receive Orders"
+                android:inputType="textEmailAddress"
+                android:id="@+id/etEmailManager" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#8a7cef"
+                android:id="@+id/btnSave1"
+                android:text="Save and Continue"
+                android:textColor="#ffffff"
+                />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

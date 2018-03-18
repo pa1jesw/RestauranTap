@@ -41,7 +41,6 @@
         <activity
             android:name=".CreateUser"
             android:screenOrientation="portrait" />
-        <activity android:name=".user_Main_Screen" />
         <activity
             android:name=".UserMainActivity"
             android:label="@string/title_activity_user_main"
@@ -52,6 +51,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SecondAct" />
+        <activity android:name=".ThirdAct" />
+        <activity android:name=".FourAct"></activity>
     </application>
 
 </manifest>

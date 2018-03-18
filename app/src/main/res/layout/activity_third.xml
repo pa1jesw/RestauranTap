@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.pa1jeswani.restaurantap.ThirdAct">
+
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:orientation="vertical">
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Business Information"
+                android:textSize="15dp"
+                android:id="@+id/ctv1"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_gravity="center_horizontal" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Operations related Information"
+                android:textSize="15dp"
+                android:id="@+id/ctv2"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_gravity="center_horizontal" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Legal and Commercial Information"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:id="@+id/ctv3"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PAN/TAN"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvPan" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="Pan/Tan Number"
+                android:ems="10"
+                android:id="@+id/etPan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PAN/TAN Copy"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvPanCopy" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnPict"
+                android:text="Select Picture" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Do you have an FSSAI Certificate "
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvCerti" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rgAccept">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbYes"
+                    android:text="Yes"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbNo"
+                    android:text="No - I do not have an FSSAI Certificate and accept full legal responsibility of my actions"/>
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GSTIN"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvGst" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:hint="GST Number"
+                android:id="@+id/etGst" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GST %"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvGstPer" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="3"
+                android:hint="10"
+                android:id="@+id/etGstPer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Fee"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvFee" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="Delivery Fee"
+                android:ems="10"
+                android:id="@+id/etFee" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Container/Packing Charge"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvCharge" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="Packing Charge"
+                android:ems="10"
+                android:id="@+id/etCharge" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service Fee"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvSerFee" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="Service Fee"
+                android:ems="10"
+                android:id="@+id/etSerFee" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Only if you're charging the same fee at your restaurant)"
+                android:textSize="16dp"
+                android:id="@+id/tvOnly" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Invoice Proof"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvInvoice" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Should contain details of all fees charges(including Taxes , Service fee , Delivery fee , Packaging charges) Should be Valid printed receipt)"
+                android:textSize="16dp"
+                android:id="@+id/tvFeeCharge" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Picture"
+                android:id="@+id/btnSelPict1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bank Account for Payments"
+                android:paddingTop="15dp"
+                android:textSize="20dp"
+                android:id="@+id/tvBank" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Upload Copy of Cancelled Cheque- Payments will be made into this account)"
+                android:textSize="16dp"
+                android:id="@+id/tvUpload" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Picture"
+                android:paddingBottom="15dp"
+                android:id="@+id/btnSelPict2" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#8a7cef"
+                android:id="@+id/btnSaveCont"
+                android:text="Save and Continue"
+                android:textColor="#ffffff"
+                />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
