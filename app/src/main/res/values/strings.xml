@@ -9,6 +9,26 @@
         <item name="Italian">Italian</item>
         <item name="Other">Other</item>
     </string-array>
+
+    <string-array name="managerarr">
+        <item name="UO">Thai</item>
+        <item name="menu edit">Chinese</item>
+        <item name="PrimeCustomer">Indian</item>
+    </string-array>
+
+    <string-array name="noofpep">
+        <item name="1">1</item>
+        <item name="2">2</item>
+        <item name="3">3</item>
+        <item name="4">4</item>
+        <item name="5">5</item>
+        <item name="6">6</item>
+        <item name="7">7</item>
+        <item name="8">8</item>
+        <item name="9">9</item>
+        <item name="10">10</item>
+    </string-array>
+
     <string name="title_activity_user_main">UserMainActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -16,5 +36,8 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_second">SecondAct</string>
+    <string name="zomato_api">
+        <![CDATA[https://developers.zomato.com/api/v2.1/search?lat=19.221511&lon=73.164463&count=10]]></string>
+
 
 </resources>

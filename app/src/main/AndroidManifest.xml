@@ -44,16 +44,23 @@
         <activity
             android:name=".UserMainActivity"
             android:label="@string/title_activity_user_main"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".SecondAct" />
         <activity android:name=".ThirdAct" />
-        <activity android:name=".FourAct"></activity>
+        <activity android:name=".FourAct" />
+        <activity android:name=".ManagerMainAct" />
+        <activity android:name=".AMTablesActivity" />
+        <activity android:name=".RestaurantNameActivity" />
+        <activity android:name=".TimingsActivity" />
+        <activity android:name=".SpecialEventActivity" />
+        <activity android:name=".RatingsActivity" />
+        <activity android:name=".HologramActivity" />
+        <activity android:name=".Uoactivity" />
+        <activity android:name=".MenuEditActivity" />
+        <activity android:name=".PrimeCustomerActivity" />
+        <activity android:name=".RestDetails" />
+        <activity android:name=".BookTable" />
+        <activity android:name=".UserBookings"></activity>
     </application>
 
 </manifest>

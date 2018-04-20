@@ -1,8 +1,15 @@
 package com.pa1jeswani.restaurantap;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +19,37 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import java.io.File;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
-public class CreateRest extends AppCompatActivity {
-    EditText etOwnEmail , etPass1 , etPass2 , etRestName , etReg , etResAddress , etPostal , etOwnerName , etContact ,etLocation, etCity , etState ;
-    Button btnSave , btnSelPic1 , btnSelPic2 , btnSelPic3;
-    RadioButton rbYes , rbNo;
-    CheckedTextView ctv1 , ctv2 , ctv3 ;
+import java.io.File;
+import java.util.List;
+import java.util.Locale;
+
+public class CreateRest extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+    EditText etOwnEmail, etPass1, etPass2, etRestName, etReg, etResAddress, etPostal, etOwnerName, etContact, etLocation, etCity, etState;
+    Button btnSave, btnSelPic1, btnSelPic2, btnSelPic3;
+    RadioButton rbYes, rbNo;
+    private FirebaseAuth mAuth;
+    private GoogleApiClient mLocationClient;
+    CheckedTextView ctv1, ctv2, ctv3;
+    private Location mLastLoc;
+    DatabaseReference dbRef;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
+        if (mLocationClient != null) {
+            mLocationClient.connect();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +69,9 @@ public class CreateRest extends AppCompatActivity {
         etCity = (EditText) findViewById(R.id.etCity);
         etState = (EditText) findViewById(R.id.etState);
         btnSave = (Button) findViewById(R.id.btnSave);
-        btnSelPic1 =(Button) findViewById(R.id.btnSelPic1);
-        btnSelPic2 =(Button) findViewById(R.id.btnSelPic2);
-        btnSelPic3 =(Button) findViewById(R.id.btnSelPic3);
+        btnSelPic1 = (Button) findViewById(R.id.btnSelPic1);
+        btnSelPic2 = (Button) findViewById(R.id.btnSelPic2);
+        btnSelPic3 = (Button) findViewById(R.id.btnSelPic3);
         ctv1 = (CheckedTextView) findViewById(R.id.ctv1);
         ctv2 = (CheckedTextView) findViewById(R.id.ctv2);
         ctv3 = (CheckedTextView) findViewById(R.id.ctv3);
@@ -50,37 +81,37 @@ public class CreateRest extends AppCompatActivity {
             public void onClick(View view) {
                 Intent gallery = new Intent(Intent.ACTION_PICK);
 
-                File picture= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                File picture = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
                 String photo = picture.getPath();
                 Uri data = Uri.parse(photo);
-                gallery.setDataAndType(data , "image/*");
-                startActivityForResult(gallery , 20);
+                gallery.setDataAndType(data, "image/*");
+                startActivityForResult(gallery, 20);
             }
         });//end of 1
 
-    btnSelPic2.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent gallery = new Intent(Intent.ACTION_PICK);
+        btnSelPic2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gallery = new Intent(Intent.ACTION_PICK);
 
-        File picture= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        String photo = picture.getPath();
-        Uri data = Uri.parse(photo);
-        gallery.setDataAndType(data , "image/*");
-        startActivityForResult(gallery , 22);
-    }
-}); // end of 2
+                File picture = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                String photo = picture.getPath();
+                Uri data = Uri.parse(photo);
+                gallery.setDataAndType(data, "image/*");
+                startActivityForResult(gallery, 22);
+            }
+        }); // end of 2
 
         btnSelPic3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent gallery = new Intent(Intent.ACTION_PICK);
 
-                File picture= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                File picture = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
                 String photo = picture.getPath();
                 Uri data = Uri.parse(photo);
-                gallery.setDataAndType(data , "image/*");
-                startActivityForResult(gallery , 25);
+                gallery.setDataAndType(data, "image/*");
+                startActivityForResult(gallery, 25);
             }
         });//end of 3
 
@@ -106,80 +137,68 @@ public class CreateRest extends AppCompatActivity {
                 else
                     ctv1.setChecked(true);
 
-                if(OwnerName.length() == 0)
-                {
+                if (OwnerName.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Invalid Name", Toast.LENGTH_LONG).show();
                     etOwnerName.requestFocus();
                     return;
                 }//end of if
 
-                if(OwnerEmail.length() == 0)
-                {
+                if (OwnerEmail.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG).show();
                     etOwnEmail.requestFocus();
                     return;
                 }//end of if
-                if(pass1.length() == 0)
-                {
+                if (pass1.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Invalid Password", Toast.LENGTH_LONG).show();
                     etPass1.requestFocus();
                     return;
                 }//end of if
-                if(pass2.length() == 0)
-                {
+                if (pass2.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Invalid Password", Toast.LENGTH_LONG).show();
                     etPass2.requestFocus();
                     return;
                 }//end of if
-                if(!(pass1.equals(pass2)))
-                {
+                if (!(pass1.equals(pass2))) {
                     Toast.makeText(getApplicationContext(), "Password Not Matching", Toast.LENGTH_LONG).show();
                     etPass2.requestFocus();
                     return;
                 }
-                if(RestName.length() == 0)
-                {
+                if (RestName.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Invalid Restaurant Name", Toast.LENGTH_LONG).show();
                     etRestName.requestFocus();
                     return;
                 }//end of if
-                if(ResAddress.length() == 0)
-                {
+                if (ResAddress.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Invalid Restaurant Address", Toast.LENGTH_LONG).show();
                     etResAddress.requestFocus();
                     return;
                 }//end of if
-                if(postal.length() == 0)
-                {
+                if (postal.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Invalid Address", Toast.LENGTH_LONG).show();
                     etPostal.requestFocus();
                     return;
                 }//end of if
-                if(contact.length() != 10)
-                {
+                if (contact.length() != 10) {
                     Toast.makeText(getApplicationContext(), "Invalid Phone Number", Toast.LENGTH_LONG).show();
                     etContact.requestFocus();
                     return;
                 }//end of if
-                if(city.length() == 0)
-                {
+                if (city.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Enter City", Toast.LENGTH_LONG).show();
                     etCity.requestFocus();
                     return;
                 }//end of if
-                if(state.length() == 0)
-                {
+                if (state.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Enter State", Toast.LENGTH_LONG).show();
                     etState.requestFocus();
                     return;
                 }
-                if(location.length() == 0)
-                {
+                if (location.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Enter Location", Toast.LENGTH_LONG).show();
                     etState.requestFocus();
                     return;
                 }
-                Intent i = new Intent(getApplicationContext() , SecondAct.class);
+                Intent i = new Intent(getApplicationContext(), SecondAct.class);
                 startActivity(i);
                 finish();
             }//end of onclick
@@ -187,4 +206,52 @@ public class CreateRest extends AppCompatActivity {
 
 
     }//end of oncreate
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mLastLoc = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
+        if(mLastLoc!=null)
+        {
+            double lat=mLastLoc.getLatitude();
+            double longt= mLastLoc.getLongitude();
+
+            Geocoder geocoder= new Geocoder(getApplicationContext(), Locale.ENGLISH);
+            try {
+                List<Address> adresss=geocoder.getFromLocation(lat,longt,2);
+                if(adresss!=null)
+                {
+                    Address fa = adresss.get(0);
+                    etLocation.setText(fa.getAddressLine(0));
+                }
+                else
+                {
+                    etLocation.setText("UMMMM Not foound");
+                }
+
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), ""+e, Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }//end of main

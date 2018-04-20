@@ -1,4 +1,4 @@
-package com.pa1jeswani.restaurantap;
+package com.pa1jeswani.restaurantap.model;
 
 /**
  * Created by PAWAN on 2/17/2018.

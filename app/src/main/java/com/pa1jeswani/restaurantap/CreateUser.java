@@ -1,7 +1,6 @@
 package com.pa1jeswani.restaurantap;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -16,16 +15,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.dd.processbutton.FlatButton;
 import com.dd.processbutton.iml.ActionProcessButton;
-import com.facebook.FacebookSdk;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -43,8 +39,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.mukeshsolanki.sociallogin.facebook.FacebookHelper;
-import com.mukeshsolanki.sociallogin.facebook.FacebookListener;
+import com.pa1jeswani.restaurantap.model.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.yarolegovich.lovelydialog.LovelyChoiceDialog;
 
@@ -52,7 +47,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class CreateUser extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, FacebookListener {
+    public class CreateUser extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     //Declare
     private DatePickerDialog.OnDateSetListener mDateListener;
@@ -61,9 +56,11 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
     private ActionProcessButton btnUSignUp;
     private ImageView googleSignUp, fbSignUp, ivProfile;
     private GoogleApiClient mLocationClient;
-    private GoogleSignInClient mGoogleSignInClient;
-    private FacebookHelper mFB;
     private Location mLastLoc;
+    double uulongt=0.0,uulat=0.0;
+    private GoogleSignInClient mGoogleSignInClient;
+    //private FacebookHelper mFB;
+
     DatabaseReference dbRef;
 
     @Override
@@ -96,11 +93,11 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
         etUCurLoc.setTypeface(face);
 
         //intit DB REF
-
+        dbRef = FirebaseDatabase.getInstance().getReference("Users");
         //init fb
-        FacebookSdk.setApplicationId(getResources().getString(R.string.facebook_app_id));
+        /*FacebookSdk.setApplicationId(getResources().getString(R.string.facebook_app_id));
         FacebookSdk.sdkInitialize(this);
-        mFB = new FacebookHelper(this);
+        mFB = new FacebookHelper(this);*/
 
         //location client
         GoogleApiClient.Builder builder = new GoogleApiClient.Builder(this).addApi(LocationServices.API);
@@ -177,6 +174,8 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
                 if (validateUserData(uname, uemail, upswd, ucpswd, uphno, ufpr, udob, uloc)) {
                     addNewUser(uname, uemail, upswd, ucpswd, uphno, ufpr, udob, uloc);
                  Intent i = new Intent(CreateUser.this,UserMainActivity.class);
+                    i.putExtra("ulong",uulongt);
+                    i.putExtra("ulat",uulat);
                  startActivity(i);
                  finish();
                 }
@@ -188,6 +187,8 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CreateUser.this,UserMainActivity.class);
+                i.putExtra("ulong",uulongt);
+                i.putExtra("ulat",uulat);
                 startActivity(i);
                 //Normal validation
 
@@ -209,9 +210,12 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
                 //All user Data is authentic
                 if (validateUserData(uname, uemail, upswd, ucpswd, uphno, ufpr, udob, uloc)) {
                     btnUSignUp.setMode(ActionProcessButton.Mode.PROGRESS);
-                createNewUser(uname,uemail,uphno,ucpswd,ufpr,udob,uloc);
+
+                addNewUser(uname,uemail,upswd,ucpswd,uphno,ufpr,udob,uloc);
+                    createNewUser(uname,uemail,uphno,ucpswd,ufpr,udob,uloc);
                     btnUSignUp.setProgress(100);
                     Intent i = new Intent(CreateUser.this,UserMainActivity.class);
+
                     startActivity(i);
                     finish();
                 }
@@ -220,8 +224,10 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
         });
     }
 
-    private void addNewUser(String uname, String uemail, String upswd, String ucpswd, String uphno, String ufpr, String udob, String uloc) {
-        dbRef = FirebaseDatabase.getInstance().getReference("Users");
+    private void addNewUser(String uname, String uemail, String upswd, String ucpswd,
+                            String uphno, String ufpr, String udob, String uloc) {
+
+        //Toast.makeText(this, "addnew user called", Toast.LENGTH_SHORT).show();
         String uid = dbRef.push().getKey();
         User newUser  = new User(uid,uname,uemail,uphno,ucpswd,udob,ufpr,uloc);
         dbRef.child(uid).setValue(newUser);
@@ -230,7 +236,7 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mFB.onActivityResult(requestCode,resultCode,data);
+        //mFB.onActivityResult(requestCode,resultCode,data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == 500) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -284,8 +290,8 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                 // Sign in success, update UI with the signed-in user's information
-                FirebaseUser user = mAuth.getCurrentUser();
-                addNewUser(uname,user.getEmail(),ucpswd,ucpswd,uphno,ufpr,udob,uloc);
+                //FirebaseUser user = mAuth.getCurrentUser();
+                //addNewUser(uname,user.getEmail(),ucpswd,ucpswd,uphno,ufpr,udob,uloc);
             } else {
             // If sign in fails, display a message to the user.
             Toast.makeText(CreateUser.this,
@@ -306,10 +312,7 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
                 .setItemsMultiChoice(items, new LovelyChoiceDialog.OnItemsSelectedListener<String>() {
                     @Override
                     public void onItemsSelected(List<Integer> positions, List<String> items) {
-                        Toast.makeText(CreateUser.this,
-                                "You selected" + items,
-                                Toast.LENGTH_SHORT)
-                                .show();
+                //Toast.makeText(CreateUser.this, "You selected" + items, Toast.LENGTH_SHORT).show();
                         etUFoodPref.setText("" + items.toString());
                     }
                 })
@@ -352,7 +355,7 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
             etUCPswd.setError("Not Matching");
             etUCPswd.requestFocus();
             return false;
-        } else if (uDob.length() < 9) {
+        } else if (uDob.length() < 8) {
             etUDob.setError("Please Select DOB");
             etUDob.requestFocus();
             return false;
@@ -387,6 +390,8 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
             double lat=mLastLoc.getLatitude();
             double longt= mLastLoc.getLongitude();
 
+            uulat=lat;
+            uulongt=longt;
             Geocoder geocoder= new Geocoder(getApplicationContext(), Locale.ENGLISH);
             try {
                 List<Address> adresss=geocoder.getFromLocation(lat,longt,2);
@@ -394,6 +399,7 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
                 {
                     Address fa = adresss.get(0);
                     etUCurLoc.setText(fa.getAddressLine(0));
+                    //etUCurLoc.setText(lat+","+longt);
                 }
                 else
                 {
@@ -416,7 +422,7 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
         Toast.makeText(this, "ConnectionFailed", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
+    /*@Override
     public void onFbSignInFail(String s) {
 
         Toast.makeText(this,
@@ -432,5 +438,5 @@ public class CreateUser extends AppCompatActivity implements GoogleApiClient.Con
     @Override
     public void onFBSignOut() {
 
-    }
+    }*/
 }

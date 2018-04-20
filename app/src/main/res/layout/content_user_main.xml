@@ -8,12 +8,11 @@
     tools:context="com.pa1jeswani.restaurantap.UserMainActivity"
     tools:showIn="@layout/app_bar_user_main">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bkduer" />
+   <android.support.v7.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_marginTop="63dp"
+       android:layout_height="match_parent"
+       android:id="@+id/restaurant_recycler">
 
+   </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>

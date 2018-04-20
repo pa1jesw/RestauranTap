@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hanks.htextview.base.HTextView;
 
-import info.hoang8f.widget.FButton;
+//import info.hoang8f.widget.FButton;
 
 public class LoginAct extends AppCompatActivity {
 
@@ -50,24 +50,26 @@ public class LoginAct extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String um =etId.getText().toString();
-                String upsw =etPswd.getText().toString();
-                if(um.length()<5)
+                if(utype.equals("Business"))
                 {
-                    etId.setError("Invalid ID");
-                    etId.requestFocus();
-                    return;
+                    Intent i = new Intent(LoginAct.this,ManagerMainAct.class);
+                    startActivity(i);
                 }
-                else
-                    if(upsw.length()<8)
-                    {
+                else {
+                    String um = etId.getText().toString();
+                    String upsw = etPswd.getText().toString();
+                    if (um.length() < 5) {
+                        etId.setError("Invalid ID");
+                        etId.requestFocus();
+                        return;
+                    } else if (upsw.length() < 8) {
                         etPswd.setError("Too SHort");
                         etPswd.requestFocus();
                         return;
+                    } else {
+                        loginwithunps(um, upsw);
                     }
-                    else {
-                    loginwithunps(um,upsw);
-                    }
+                }
             }
         });
 
